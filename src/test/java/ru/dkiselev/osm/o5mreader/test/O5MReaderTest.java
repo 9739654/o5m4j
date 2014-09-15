@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package ru.dkiselev.osm.o5mreader;
+package ru.dkiselev.osm.o5mreader.test;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -12,6 +12,8 @@ import java.util.List;
 import static junit.framework.Assert.assertEquals;
 import org.junit.Assert;
 import org.junit.Test;
+import ru.dkiselev.osm.o5mreader.O5MReader;
+import ru.dkiselev.osm.o5mreader.SimpleO5MHandler;
 import ru.dkiselev.osm.o5mreader.datasets.Node;
 import ru.dkiselev.osm.o5mreader.datasets.Relation;
 import ru.dkiselev.osm.o5mreader.datasets.Way;
@@ -39,40 +41,15 @@ public class O5MReaderTest {
 		
 		Assert.assertNotNull(is);
 		
-		class Handler extends O5MHandler {
-			List<Node> nodes = new ArrayList<>();
-			List<Way> ways = new ArrayList<>();
-			List<Relation> relations = new ArrayList<>();
-
-			@Override
-			public void handleNode(Node ds) {
-				nodes.add(ds);
-			}
-
-			@Override
-			public void handleWay(Way ds) {
-				ways.add(ds);
-			}
-
-			@Override
-			public void handleRelation(Relation ds) {
-				relations.add(ds);
-			}
-
-			@Override
-			public String toString() {
-				return "O5MHandler { nodes=" + nodes.size() + ", ways=" + ways.size() + ", relations=" + relations.size() + " }";
-			}
-		}
-		
-		Handler handler = new Handler();
+		SimpleO5MHandler handler = new SimpleO5MHandler();
 		O5MReader reader = new O5MReader(is);
-		
-		assertEquals(true, handler.nodes.size() > 0);
-		assertEquals(true, handler.ways.size() > 0);
-		assertEquals(true, handler.relations.size() > 0);
 		
 		//TODO Count datasets and check
 		System.out.println(handler.toString());
+		
+		assertEquals(true, handler.getNodes().size() > 0);
+		assertEquals(true, handler.getWays().size() > 0);
+		assertEquals(true, handler.getRelations().size() > 0);
+		
 	}
 }

@@ -4,7 +4,7 @@ import ru.dkiselev.osm.o5mreader.datasets.Node;
 import ru.dkiselev.osm.o5mreader.datasets.Relation;
 import ru.dkiselev.osm.o5mreader.datasets.Way;
 
-public class O5MHandler {
+public abstract class O5MHandler {
 
 	public void handleNode(Node ds) {
 		

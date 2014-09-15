@@ -223,6 +223,7 @@ public class O5MReader {
 					if (n.getLat()>maxLat)
 						maxLat = n.getLat();
 					
+					return n;
 				}
 			}
 
